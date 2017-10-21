@@ -1,23 +1,20 @@
 require 'pry'
 require './lib/queue'
 require './lib/help'
+require './lib/load'
 require 'readline'
 require 'csv'
 
 
-class EventReporter
-
-  include 'Help'
-
   stty_save = 'stty -g'.chomp
 
   begin
-      while input = Readlines.readline("> ", true)
+      while input = Readline.readline("> ", true)
         case input
         when "exit"
           break
         when "load"
-          load
+          contents = CSV.open 'full_event_attendees.csv', headers: true, header_converters: :symbol
         when "find"
           find("query")
         when "help"
@@ -30,15 +27,6 @@ class EventReporter
   end
 
 
-  def system(command)
-    fork {
-      exec(command)
-    }
-  end
-
-
-
-  end
-
-
-end
+# def system(command)
+#   exec(command)
+# end

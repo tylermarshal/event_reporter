@@ -22,7 +22,7 @@ class EventReporter
 
   def command_router(divided_input)
       case divided_input.first
-      when "load" then Load.load_command(divided_input)
+      when "load" then Load.new(divided_input[1])
       when "help" then help_commands(divided_input)
       when "queue" then queue_commands(divided_input[1..-1])
       when "find" then find_commands(divided_input[1], divided_input[2])

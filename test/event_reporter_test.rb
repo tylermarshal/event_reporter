@@ -11,5 +11,12 @@ class EventReporterTest < Minitest::Test
     assert_instance_of EventReporter, event_reporter
   end
 
+  def test_it_responds_to_nil
+    skip
+    event_reporter = EventReporter.new
+
+    assert_equal nil, event_reporter.repl
+  end
+
 
 end

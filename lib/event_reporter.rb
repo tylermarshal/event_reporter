@@ -7,12 +7,13 @@ require 'csv'
 
 class EventReporter
 
-  def event_reporter
+  def repl
+    input = ""
     until input == 'quit'
       input = gets.strip
       divided_input = input.split(' ')
       if divided_input == nil
-        puts "Please enter a command"
+        puts "That is not a valid command"
       else
         command_router(divided_input)
       end
@@ -21,10 +22,10 @@ class EventReporter
 
   def command_router(divided_input)
       case divided_input.first
-      when "load" then load_command(divided_input[1])
-      when "help" then help_commands(divided_input[1..-1])
+      when "load" then Load.load_command(divided_input)
+      when "help" then help_commands(divided_input)
       when "queue" then queue_commands(divided_input[1..-1])
-      when "find" then find_commands(divided_input[1..-1])
+      when "find" then find_commands(divided_input[1], divided_input[2])
       end
   end
 

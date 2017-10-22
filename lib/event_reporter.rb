@@ -6,7 +6,17 @@ require 'readline'
 require 'csv'
 
 
-  until input == 'quit'
-    input = gets.strip
-    divided_input = input.split(' ')
+  def event_reporter
+
+    until input == 'quit'
+      input = gets.strip
+      divided_input = input.split(' ')
+      if divided_input == nil
+        puts "Please enter a command"
+      elsif divided_input.length == 1
+        single_command(divided_input.first)
+      else
+
+
+    end
   end

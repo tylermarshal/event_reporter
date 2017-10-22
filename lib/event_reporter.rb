@@ -5,28 +5,27 @@ require './lib/load'
 require 'readline'
 require 'csv'
 
+class EventReporter
 
-  stty_save = 'stty -g'.chomp
-
-  begin
-      while input = Readline.readline("> ", true)
-        case input
-        when "exit"
-          break
-        when "load"
-          contents = CSV.open 'full_event_attendees.csv', headers: true, header_converters: :symbol
-        when "find"
-          find("query")
-        when "help"
-          Help.help
-        end
+  def event_reporter
+    until input == 'quit'
+      input = gets.strip
+      divided_input = input.split(' ')
+      if divided_input == nil
+        puts "Please enter a command"
+      else
+        command_router(divided_input)
       end
-    rescue Interrupt => e
-      system('stty', stty_save) #restore
-      exit
+    end
   end
 
+  def command_router(divided_input)
+      case divided_input.first
+      when "load" then load_command(divided_input[1])
+      when "help" then help_commands(divided_input[1..-1])
+      when "queue" then queue_commands(divided_input[1..-1])
+      when "find" then find_commands(divided_input[1..-1])
+      end
+  end
 
-# def system(command)
-#   exec(command)
-# end
+end

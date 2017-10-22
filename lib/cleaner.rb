@@ -1,23 +1,21 @@
+require 'csv'
+
 module Cleaner
-
-
   contents = CSV.open 'full_event_attendees.csv', headers: true, header_converters: :symbol
 
   def clean_file
     contents.each do |row|
 
-      id = row[:id]
-      reg_date = clean_reg_date(row[:RegDate])
-      first_Name = clean_first_name(row[:first_Name])
-      last_Name = clean_first_name(row[:first_Name])
-      email = clean_email(row[:Email_Address])
-      home_phone = clean_home_phone(row[:HomePhone])
-      street = clean_street(row[:Street])
-      city = clean_city(row[:City])
-      state = clean_state(row[:State])
-      zipcode = clean_zipcode(row[:Zipcode])
-
-      puts "#{id} #{first_Name} #{last_Name} #{zipcode}"
+    row[:id] = row[:id]
+    row[:RegDate] = clean_reg_date(row[:RegDate])
+    row[:first_Name] = clean_first_name(row[:first_Name])
+    row[:last_Name] = clean_last_name(row[:last_Name])
+    row[:Email_Address] = clean_email(row[:Email_Address])
+    row[:HomePhone] = clean_home_phone(row[:HomePhone])
+    row[:Street] = clean_street(row[:Street])
+    row[:City] = clean_city(row[:City])
+    row[:State] = clean_state(row[:State])
+    row[:Zipcode] = clean_zipcode(row[:Zipcode])
     end
   end
 
@@ -41,6 +39,10 @@ module Cleaner
 
   def clean_email(email)
     email.to_s.strip
+  end
+
+  def clean_home_phone(home_phone)
+    home_phone.to_s.delete("-(). ")
   end
 
   def clean_street(street)

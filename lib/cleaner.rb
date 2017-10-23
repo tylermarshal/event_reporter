@@ -27,6 +27,28 @@ module Cleaner
     :zipcode => clean_zipcode(row[:zipcode])}
   end
 
+  def clean_criteria(attribute, criteria)
+    if :regdate == attribute
+     clean_reg_date(criteria)
+    elsif :first_name == attribute
+       clean_first_name(criteria)
+    elsif :last_name == attribute
+       clean_last_name(criteria)
+    elsif :email_address == attribute
+       clean_email(criteria)
+    elsif :homephone == attribute
+       clean_home_phone(criteria)
+    elsif :street == attribute
+       clean_street(criteria)
+    elsif :city == attribute
+       clean_city(criteria)
+    elsif :state == attribute
+       clean_state(criteria)
+    elsif :zipcode == attribute
+       clean_zipcode(criteria)
+    end
+  end
+
   def clean_first_name(first_name)
       names = first_name.to_s.strip.downcase.split(' ')
       names.map! do |name|

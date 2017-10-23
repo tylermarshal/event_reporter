@@ -13,7 +13,6 @@ class LoadTest < Minitest::Test
   end
 
   def test_it_responds_to_nil
-    skip
     load_csv = Load.new
 
     assert_equal nil, load_csv.load_command(["load"])

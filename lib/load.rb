@@ -7,18 +7,17 @@ class Load
 
   attr_reader :full_list, :queue
 
-  def initialize(file = './full_event_attendees.csv' if nil)
+  def initialize(file = default_file(file))
     @full_list = CSV.open file, headers: true, header_converters: :symbol
     @clean_list = []
   end
 
-  def load_command(divided_input)
-    if divided_input.length == 1
-      full_list
-    else
-      @full_list = CSV.open '#{divided_input[1]}', headers: true, header_converters: :symbol
-    end
-    full_list.clean_file
+  def default_file(file)
+    './full_event_attendees.csv' if file.nil?
+  end
+
+  def clean_file
+    @clean_list = full_list.clean_file
   end
 
 end

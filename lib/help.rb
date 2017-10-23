@@ -12,15 +12,15 @@ module Help
 
   def help(command)
     case command
-    when nil then HELP.keys.each {|key| puts "#{key}"}
-    when "load" then HELP["load"]
-    when "find" then HELP["find"]
-    when "queue count" then HELP["queue count"]
-    when "queue clear" then HELP["queue clear"]
-    when "queue print" then HELP["queue print"]
-    when "queue print by" then HELP["queue print by"]
-    when "queue save to" then HELP["queue save to"]
-    when "queue export html" then HELP["queue export html"]
+    when "help" then HELP.keys.each {|key| puts "#{key}"}
+    when "help load" then HELP["load"]
+    when "help find" then HELP["find"]
+    when "help queue count" then HELP["queue count"]
+    when "help queue clear" then HELP["queue clear"]
+    when "help queue print" then HELP["queue print"]
+    when "help queue print by" then HELP["queue print by"]
+    when "help queue save to" then HELP["queue save to"]
+    when "help queue export html" then HELP["queue export html"]
     end
   end
 

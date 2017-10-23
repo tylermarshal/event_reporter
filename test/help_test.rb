@@ -11,22 +11,22 @@ class HelpTest < Minitest::Test
     assert_equal ["load", "find", "queue count",
                   "queue clear", "queue print",
                   "queue print by", "queue save to",
-                  "queue export html"], help(nil)
+                  "queue export html"], help("help")
   end
 
   def test_it_provides_load_help
     assert_equal "Erase any loaded data and parse the specified file (Format: load <filename>). If no filename is given, default to full_event_attendees.csv.",
-    help("load")
+    help("help load")
   end
 
   def test_it_provides_find_help
     assert_equal "Populate the queue with all records matching the criteria for the given attribute. Format: find <attribute> <criteria>)",
-     help("find")
+     help("help find")
   end
 
   def test_it_provides_queue_count_help
     assert_equal "Populate the queue with all records matching the criteria for the given attribute. Format: find <attribute> <criteria>)",
-     help("find")
+     help("help find")
   end
 
 

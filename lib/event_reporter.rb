@@ -33,7 +33,7 @@ class EventReporter
   def command_router(divided_input)
     case divided_input.first
     when "load" then @clean_list = load_command(divided_input[1])
-    when "help" then help_commands(divided_input)
+    when "help" then help_commands(divided_input.join(' '))
     when "queue" then queue_commands(divided_input[1..-1])
     when "find" then find_commands(divided_input[1], divided_input[2])
     end

@@ -51,14 +51,14 @@ class EventReporter
     if input.length > 1
       queue_command = input[0..-2].join(' ')
       case queue_command
-      when "save to" then @queue.save_to(input[-1])
-      when "export html" then @queue.export_html(input[-1])
-      when "print by" then @queue.print_by(input[-1])
+      when "save to" then save_to(@queue, input[-1])
+      when "export html" then export_html(@queue, input[-1])
+      when "print by" then print_by(@queue, input[-1])
       end
     else
       case input.first
       when "clear" then @queue = []
-      when "print" then @queue.printer
+      when "print" then printer(@queue)
       when "count" then @queue.length
       end
     end

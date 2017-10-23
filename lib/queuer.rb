@@ -2,22 +2,21 @@ require 'pry'
 
 module Queuer
 
-  def print_by(attribute)
+  def print_by(queue,attribute)
 
   end
 
-  def printer
-    self.each do |row|
-      puts "#{row[:last_name]}  #{row[:first_name]}  #{row[:email_address]}  #{row[:zipcode]}  #{row[:city]}  #{row[:state]}  #{row[:street]}  #{row[:homephone]}}"
-      binding.pry
+  def printer(queue)
+    queue.each do |row|
+      puts "#{row[:last_name]}  #{row[:first_name]}  #{row[:email_address]}  #{row[:zipcode]}  #{row[:city]}  #{row[:state]}  #{row[:street]}  #{row[:homephone]}"
     end
   end
 
-  def save_to(filename)
+  def save_to(queue,filename)
 
   end
 
-  def export_html(filename)
+  def export_html(queue, filename)
 
   end
 

@@ -1,6 +1,6 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-require './lib/queue'
+require './lib/queuer'
 require 'pry'
 
 class QueueTest < Minitest::Test

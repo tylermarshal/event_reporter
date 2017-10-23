@@ -1,7 +1,7 @@
 
 require 'minitest/autorun'
 require 'minitest/pride'
-require './lib/cleaner'
+require_relative 'test_helper'
 require 'csv'
 require 'pry'
 

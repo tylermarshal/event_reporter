@@ -1,6 +1,6 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-require './lib/event_reporter'
+require_relative 'test_helper'
 require 'pry'
 
 class EventReporterTest < Minitest::Test
@@ -11,12 +11,12 @@ class EventReporterTest < Minitest::Test
     assert_instance_of EventReporter, event_reporter
   end
 
-  # def test_it_responds_to_nil
-  #   skip
-  #   event_reporter = EventReporter.new
-  #
-  #   assert_equal nil, event_reporter.repl
-  # end
+  def test_it_responds_to_nil
+    skip
+    event_reporter = EventReporter.new
+
+    assert_equal nil, event_reporter.repl
+  end
 
   def test_it_sends_input_load
     event_reporter = EventReporter.new
@@ -41,7 +41,7 @@ class EventReporterTest < Minitest::Test
     assert_equal found_row, event_reporter.queue
   end
 
-  def test_it_finds_data
+  def test_it_prints_data
     event_reporter = EventReporter.new
     event_reporter.command_router(["load"])
     event_reporter.find_commands("first_name", "Minh")
@@ -72,7 +72,7 @@ class EventReporterTest < Minitest::Test
     event_reporter = EventReporter.new
     event_reporter.command_router(["load"])
     event_reporter.find_commands("first_name", "John")
-    # queue_print = "Phadke Minh  uhswanso@jumpstartlab.com  5189290000  1 Chapin Way  Northampton  MA   01063"
+
 
     assert_equal [], event_reporter.queue_commands(["clear"])
   end

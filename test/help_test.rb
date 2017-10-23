@@ -1,26 +1,34 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-require './lib/help'
+require_relative 'test_helper'
 require 'pry'
-
-class Helper
-  include Help
-
-end
 
 class HelpTest < Minitest::Test
 
-
-  # def test_it_exists
-  #   help = Help.new
-  #
-  #   assert_instance_of Help, help
-  # end
+  include Help
 
   def test_provides_all_commands
-    Helper.help
-
+    assert_equal ["load", "find", "queue count",
+                  "queue clear", "queue print",
+                  "queue print by", "queue save to",
+                  "queue export html"], help(nil)
   end
+
+  def test_it_provides_load_help
+    assert_equal "Erase any loaded data and parse the specified file (Format: load <filename>). If no filename is given, default to full_event_attendees.csv.",
+    help("load")
+  end
+
+  def test_it_provides_find_help
+    assert_equal "Populate the queue with all records matching the criteria for the given attribute. Format: find <attribute> <criteria>)",
+     help("find")
+  end
+
+  def test_it_provides_queue_count_help
+    assert_equal "Populate the queue with all records matching the criteria for the given attribute. Format: find <attribute> <criteria>)",
+     help("find")
+  end
+
 
 
 end

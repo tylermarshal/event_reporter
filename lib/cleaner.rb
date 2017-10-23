@@ -4,7 +4,7 @@ module Cleaner
   contents = CSV.open 'full_event_attendees.csv', headers: true, header_converters: :symbol
 
   def clean_file
-    contents.each do |row|
+    self.each do |row|
 
     row[:id] = row[:id]
     row[:RegDate] = clean_reg_date(row[:RegDate])

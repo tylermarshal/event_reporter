@@ -1,22 +1,30 @@
 require 'csv'
 
 module Cleaner
-  contents = CSV.open 'full_event_attendees.csv', headers: true, header_converters: :symbol
 
-  def clean_file
-    self.each do |row|
+    attr_reader :full_list, :queue
 
-    row[:id] = row[:id]
-    row[:RegDate] = clean_reg_date(row[:RegDate])
-    row[:first_Name] = clean_first_name(row[:first_Name])
-    row[:last_Name] = clean_last_name(row[:last_Name])
-    row[:Email_Address] = clean_email(row[:Email_Address])
-    row[:HomePhone] = clean_home_phone(row[:HomePhone])
-    row[:Street] = clean_street(row[:Street])
-    row[:City] = clean_city(row[:City])
-    row[:State] = clean_state(row[:State])
-    row[:Zipcode] = clean_zipcode(row[:Zipcode])
+  def load_command(filename = nil)
+    if filename.nil?
+      filename = './full_event_attendees.csv'
     end
+    load_file = CSV.open filename, headers: true, header_converters: :symbol
+    load_file.map do |row|
+      clean_file(row)
+    end
+  end
+
+
+  def clean_file(row)
+    {:regdate => clean_reg_date(row[:regdate]),
+    :first_name => clean_first_name(row[:first_name]),
+    :last_name => clean_last_name(row[:last_name]),
+    :email_address => clean_email(row[:email_address]),
+    :homephone => clean_home_phone(row[:homephone]),
+    :street => clean_street(row[:street]),
+    :city => clean_city(row[:city]),
+    :state => clean_state(row[:state]),
+    :zipcode => clean_zipcode(row[:zipcode])}
   end
 
   def clean_first_name(first_name)

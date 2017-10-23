@@ -2,11 +2,26 @@
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/cleaner'
+require 'csv'
 require 'pry'
 
 class CleanerTest < Minitest::Test
 
   include Cleaner
+
+  def test_clean_whole_row
+    full_list = load_command('./full_event_attendees.csv')
+    clean_file_row_3 = {:regdate => "11/12/08 13:23",
+                        :first_name => "Sarah",
+                        :last_name => "Hankins",
+                        :email_address => "pinalevitsky@jumpstartlab.com",
+                        :homephone => "4145205000",
+                        :street => "2022 15th Street NW",
+                        :city => "Washington",
+                        :state => "DC",
+                        :zipcode => "20009"}
+    assert_equal clean_file_row_3, full_list[1]
+  end
 
   def test_it_cleans_first_name
     assert_equal "Suzie Joe", clean_first_name("Suzie joe")

@@ -26,3 +26,29 @@ module Queuer
   end
 
 end
+
+queue = [{:regdate=>"2/1/09 20:28",
+              :first_name=>"Minh",
+              :last_name=>"Phadke",
+              :email_address=>"uhswanso@jumpstartlab.com",
+              :homephone=>"5189290000",
+              :street=>"1 Chapin Way",
+              :city=>"Northampton",
+              :state=>"MA",
+              :zipcode=>"01063"},{:regdate=>"2/1/09 20:28",
+                            :first_name=>"Minh",
+                            :last_name=>"Phadke",
+                            :email_address=>"uhswanso@jumpstartlab.com",
+                            :homephone=>"5189290000",
+                            :street=>"1 Chapin Way",
+                            :city=>"Northampton",
+                            :state=>"MA",
+                            :zipcode=>"01064"}, {:regdate=>"2/1/09 20:28",
+                                          :first_name=>"Minh",
+                                          :last_name=>"Phadke",
+                                          :email_address=>"uhswanso@jumpstartlab.com",
+                                          :homephone=>"5189290000",
+                                          :street=>"1 Chapin Way",
+                                          :city=>"Northampton",
+                                          :state=>"MA",
+                                          :zipcode=>"01065"}]

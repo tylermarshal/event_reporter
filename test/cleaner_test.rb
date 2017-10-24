@@ -1,9 +1,5 @@
-
-require 'minitest/autorun'
-require 'minitest/pride'
 require_relative 'test_helper'
 require 'csv'
-require 'pry'
 
 class CleanerTest < Minitest::Test
 
@@ -70,6 +66,7 @@ class CleanerTest < Minitest::Test
   def test_it_cleans_reg_date
     assert_equal "12/8/08 20:47", clean_reg_date("12/8/08 20:47 ")
   end
+
 
 
 end

@@ -1,7 +1,4 @@
-require 'minitest/autorun'
-require 'minitest/pride'
 require_relative 'test_helper'
-require 'pry'
 
 class EventReporterTest < Minitest::Test
 
@@ -38,7 +35,7 @@ class EventReporterTest < Minitest::Test
                   :state=>"MA",
                   :zipcode=>"01063"}]
 
-    assert_equal found_row, event_reporter.queue
+    assert_equal found_row, event_reporter.current_queue
   end
 
   def test_it_prints_data

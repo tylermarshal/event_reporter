@@ -1,4 +1,5 @@
 require 'pry'
+require 'erb'
 
 module Queuer
 
@@ -22,7 +23,11 @@ module Queuer
   end
 
   def export_html(queue, filename)
+    erb_template = ERB.new template_letter
 
+    contents.each do |row|
+      form_letter = erb_template.result(binding)
+    end
   end
 
 end

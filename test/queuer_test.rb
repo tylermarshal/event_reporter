@@ -1,7 +1,4 @@
-require 'minitest/autorun'
-require 'minitest/pride'
-require './lib/queuer'
-require 'pry'
+require_relative 'test_helper'
 
 class QueueTest < Minitest::Test
 

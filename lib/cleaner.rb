@@ -9,10 +9,19 @@ module Cleaner
       filename = './full_event_attendees.csv'
     end
     load_file = CSV.open filename, headers: true, header_converters: :symbol
-    clean_file = load_file.map do |row|
-      Attendee.new(clean_file(row))
-    end
     puts "#{filename} has been loaded."
+    load_and_clean_file(load_file)
+    # load_file = CSV.open filename, headers: true, header_converters: :symbol
+    # load_file.map do |row|
+    #   clean_file(row)
+    # end
+
+  end
+
+  def load_and_clean_file(load_file)
+    clean_file = load_file.map do |row|
+      clean_file(row)
+    end
     clean_file
   end
 

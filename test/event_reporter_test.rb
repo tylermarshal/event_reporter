@@ -42,27 +42,25 @@ class EventReporterTest < Minitest::Test
     event_reporter = EventReporter.new
     event_reporter.command_router(["load"])
     event_reporter.find_commands("first_name", "Minh")
-    # queue_print = "Phadke Minh  uhswanso@jumpstartlab.com  5189290000  1 Chapin Way  Northampton  MA   01063"
 
-    assert_nil nil, event_reporter.queue_commands(["print"])
+    assert_nil nil, event_reporter.queue_commands("queue print")
   end
 
   def test_it_counts_queue
     event_reporter = EventReporter.new
     event_reporter.command_router(["load"])
     event_reporter.find_commands("first_name", "Minh")
-    # queue_print = "Phadke Minh  uhswanso@jumpstartlab.com  5189290000  1 Chapin Way  Northampton  MA   01063"
 
-    assert_equal 1, event_reporter.queue_commands(["count"])
+    assert_equal nil, event_reporter.queue_commands("queue count")
   end
 
   def test_it_counts_queue_more_than_1_result
     event_reporter = EventReporter.new
     event_reporter.command_router(["load"])
     event_reporter.find_commands("first_name", "John")
-    # queue_print = "Phadke Minh  uhswanso@jumpstartlab.com  5189290000  1 Chapin Way  Northampton  MA   01063"
 
-    assert_equal 63, event_reporter.queue_commands(["count"])
+
+    assert_equal nil, event_reporter.queue_commands("queue count")
   end
 
   def test_it_clears_queue
@@ -71,7 +69,7 @@ class EventReporterTest < Minitest::Test
     event_reporter.find_commands("first_name", "John")
 
 
-    assert_equal [], event_reporter.queue_commands(["clear"])
+    assert_equal [], event_reporter.queue_commands("queue clear")
   end
 
 

@@ -8,16 +8,18 @@ class EventReporter
 
   include Cleaner
   include Queuer
+  include Help
 
   attr_reader :current_queue
   attr_accessor :clean_list
 
   def initialize
-    @current_queue = current_queue
+    @current_queue = []
     @clean_list = clean_list
   end
 
   def repl
+    "Please enter a command. Type 'help' for a list of commands."
     input = ""
     until input == 'quit'
       input = gets.to_s.strip
@@ -34,8 +36,8 @@ class EventReporter
     case divided_input.first
     when "load" then @clean_list = load_command(divided_input[1])
     when "help" then help_commands(divided_input.join(' '))
-    when "current_queue" then queue_commands(divided_input[1..-1])
-    when "find" then find_commands(divided_input[1], divided_input[2])
+    when "queue" then queue_commands(divided_input.join(' '))
+    when "find" then find_commands(divided_input[1], divided_input[2..-1].join(' '))
     end
   end
 
@@ -45,28 +47,25 @@ class EventReporter
     @current_queue = @clean_list.find_all do |row|
       row[symbol_attribute] == cleaned_criteria
     end
+    puts "All listings with a #{attribute} of '#{criteria}' have been added to the queue."
   end
 
   def queue_commands(input)
-    if input.length > 1
+    if input.length > 11
+      input = input.split(' ')
       queue_command = input[0..-2].join(' ')
       case queue_command
-      when "save to" then save_to(@current_queue, input[-1])
-      when "export html" then export_html(@current_queue, input[-1])
-      when "print by" then print_by(@current_queue, input[-1])
+      when "queue save to" then save_to(@current_queue, input[-1])
+      when "queue export html" then export_html(@current_queue, input[-1])
+      when "queue print by" then print_by(@current_queue, input[-1])
       end
     else
-      case input.first
-      when "clear" then @current_queue = []
-      when "print" then printer(@current_queue)
-      when "count" then @current_queue.length
+      case input
+      when "queue clear" then @current_queue = []
+      when "queue print" then printer(@current_queue)
+      when "queue count" then puts @current_queue.length
       end
     end
   end
-
-
-
-
-
 
 end

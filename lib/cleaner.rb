@@ -9,9 +9,12 @@ module Cleaner
       filename = './full_event_attendees.csv'
     end
     load_file = CSV.open filename, headers: true, header_converters: :symbol
-    load_file.map do |row|
+    clean_file = load_file.map do |row|
+      # Attendee.new(clean_file(row))
       clean_file(row)
     end
+    puts "#{filename} has been loaded."
+    clean_file
   end
 
 
@@ -29,7 +32,7 @@ module Cleaner
 
   def clean_criteria(attribute, criteria)
     if :regdate == attribute
-     clean_reg_date(criteria)
+      clean_reg_date(criteria)
     elsif :first_name == attribute
        clean_first_name(criteria)
     elsif :last_name == attribute
@@ -93,8 +96,5 @@ module Cleaner
   def clean_reg_date(reg_date)
     reg_date.to_s.strip
   end
-
-
-
 
 end

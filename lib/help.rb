@@ -10,10 +10,10 @@ module Help
   "queue export html" => "Export the current queue to the specified filename as a valid HTML file. Format: 'queue export html <filename.csv>'"}
 
   def help_commands(command)
-
     case command
     when "help"
-      puts "\nBelow is a list of commands. Enter 'help <command>' for additional information about a particular command."
+      puts "\nBelow is a list of commands."
+      puts "Enter 'help <command>' for additional information."
       HELP.keys.each {|key| puts "#{key}"}
     when "help load" then puts HELP["load"]
     when "help find" then puts HELP["find"]

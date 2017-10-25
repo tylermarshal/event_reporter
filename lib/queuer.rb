@@ -7,9 +7,7 @@ module Queuer
     sorted_queue = queue.sort_by do |key|
       key[attribute.to_sym]
     end
-    sorted_queue.each do |row|
-      puts "#{row[:last_name]}  #{row[:first_name]}  #{row[:email_address]}  #{row[:zipcode]}  #{row[:city]}  #{row[:state]}  #{row[:street]}  #{row[:homephone]}"
-    end
+    printer(sorted_queue)
   end
 
   def printer(queue)

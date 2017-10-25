@@ -10,8 +10,7 @@ module Cleaner
     end
     load_file = CSV.open filename, headers: true, header_converters: :symbol
     clean_file = load_file.map do |row|
-      # Attendee.new(clean_file(row))
-      clean_file(row)
+      Attendee.new(clean_file(row))
     end
     puts "#{filename} has been loaded."
     clean_file

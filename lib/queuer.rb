@@ -18,16 +18,26 @@ module Queuer
 
   def save_to(queue,filename)
     CSV.open(filename, "wb") do |csv|
-      csv << ["last_name", "first_name", "email_address", "zipcode", "city", "state", "street", "homephone"]
-      queue.each do |row|
-        csv << [row[:last_name], row[:first_name], row[:email_address], row[:zipcode], row[:city], row[:state], row[:street], row[:homephone]]
-      end
+      csv << ["last_name", "first_name", "email_address",
+        "zipcode", "city", "state", "street", "homephone"]
+      save_to_add_queue_data(queue, csv)
+    end
+  end
+
+  def save_to_add_queue_data(queue, csv)
+    queue.each do |row|
+      csv << [row[:last_name], row[:first_name], row[:email_address],
+      row[:zipcode], row[:city], row[:state], row[:street], row[:homephone]]
     end
   end
 
   def export_html(queue, filename)
     template_letter = File.read "./file_template.html.erb"
     erb_template = ERB.new template_letter
+    add_each_row_to_html(erb_template, queue, filename)
+  end
+
+  def add_each_row_to_html(erb_template, queue, filename)
     queue.each do |row|
       form_letter = erb_template.result(binding)
       save_html_file(filename, form_letter)

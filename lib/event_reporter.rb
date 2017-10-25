@@ -24,11 +24,7 @@ class EventReporter
     until input == 'quit'
       input = gets.to_s.strip
       divided_input = input.split(' ')
-      if divided_input == nil
-        puts "That is not a valid command"
-      else
-        command_router(divided_input)
-      end
+      command_router(divided_input)
     end
   end
 
@@ -38,6 +34,7 @@ class EventReporter
     when "help" then help_commands(divided_input.join(' '))
     when "queue" then queue_commands(divided_input.join(' '))
     when "find" then find_commands(divided_input[1], divided_input[2..-1].join(' '))
+    else puts "That is not a valid command."
     end
   end
 

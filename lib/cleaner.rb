@@ -18,7 +18,6 @@ module Cleaner
     clean_file
   end
 
-
   def clean_file(row)
     {:regdate => clean_reg_date(row[:regdate]),
     :first_name => clean_first_name(row[:first_name]),
@@ -32,24 +31,16 @@ module Cleaner
   end
 
   def clean_criteria(attribute, criteria)
-    if :regdate == attribute
-      clean_reg_date(criteria)
-    elsif :first_name == attribute
-       clean_first_name(criteria)
-    elsif :last_name == attribute
-       clean_last_name(criteria)
-    elsif :email_address == attribute
-       clean_email(criteria)
-    elsif :homephone == attribute
-       clean_home_phone(criteria)
-    elsif :street == attribute
-       clean_street(criteria)
-    elsif :city == attribute
-       clean_city(criteria)
-    elsif :state == attribute
-       clean_state(criteria)
-    elsif :zipcode == attribute
-       clean_zipcode(criteria)
+    case attribute
+    when :regdate then clean_reg_date(criteria)
+    when :first_name then clean_first_name(criteria)
+    when :last_name then clean_last_name(criteria)
+    when :email_address then clean_email(criteria)
+    when :homephone then clean_home_phone(criteria)
+    when :street then clean_street(criteria)
+    when :city then clean_city(criteria)
+    when :state then clean_state(criteria)
+    when :zipcode then clean_zipcode(criteria)
     end
   end
 

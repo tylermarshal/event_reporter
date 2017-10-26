@@ -67,6 +67,18 @@ class CleanerTest < Minitest::Test
     assert_equal "12/8/08 20:47", clean_reg_date("12/8/08 20:47 ")
   end
 
+  def test_it_cleans_criteria
+    assert_equal "12/8/08 20:47", clean_criteria(:regdate, "12/8/08 20:47 ")
+    assert_equal "VA", clean_criteria(:state, " va")
+    assert_equal "Minneapolis", clean_criteria(:city, " minneapolis")
+    assert_equal "1601 East River Terrace", clean_criteria(:street, "  1601 East River Terrace")
+    assert_equal "5102824000", clean_criteria(:homephone, "510 282 4000")
+    assert_equal "qrm4462@jumpstartlab.com", clean_criteria(:email_address, "qrm4462@jumpstartlab.com  ")
+    assert_equal "Sanchez", clean_criteria(:last_name, "  Sanchez")
+    assert_equal "00239", clean_criteria(:zipcode, 239)
+    assert_equal "Rachel Ray", clean_criteria(:first_name, "rachel ray   ")
+  end
+
 
 
 end

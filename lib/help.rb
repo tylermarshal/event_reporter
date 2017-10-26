@@ -11,10 +11,7 @@ module Help
 
   def help_commands(command)
     case command
-    when "help"
-      puts "\nBelow is a list of commands."
-      puts "Enter 'help <command>' for additional information."
-      HELP.keys.each {|key| puts "#{key}"}
+    when "help" then provide_list_of_commands
     when "help load" then puts HELP["load"]
     when "help find" then puts HELP["find"]
     when "help queue count" then puts HELP["queue count"]
@@ -24,6 +21,12 @@ module Help
     when "help queue save to" then puts HELP["queue save to"]
     when "help queue export html" then puts HELP["queue export html"]
     end
+  end
+
+  def provide_list_of_commands
+    puts "\nBelow is a list of commands."
+    puts "Enter 'help <command>' for additional information."
+    HELP.keys.each {|key| puts "#{key}"}
   end
 
 end

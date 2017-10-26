@@ -19,16 +19,12 @@ class EventReporter
   end
 
   def repl
-    "Please enter a command. Type 'help' for a list of commands."
+    puts "Please enter a command. Type 'help' for a list of commands."
     input = ""
     until input == 'quit'
       input = gets.to_s.strip
       divided_input = input.split(' ')
-      if divided_input == nil
-        puts "That is not a valid command"
-      else
-        command_router(divided_input)
-      end
+      command_router(divided_input)
     end
   end
 
@@ -38,6 +34,7 @@ class EventReporter
     when "help" then help_commands(divided_input.join(' '))
     when "queue" then queue_commands(divided_input.join(' '))
     when "find" then find_commands(divided_input[1], divided_input[2..-1].join(' '))
+    else puts "That is not a valid command."
     end
   end
 
@@ -47,24 +44,32 @@ class EventReporter
     @current_queue = @clean_list.find_all do |row|
       row[symbol_attribute] == cleaned_criteria
     end
-    puts "All listings with a #{attribute} of '#{criteria}' have been added to the queue."
+    puts "All listings with a #{attribute} of '#{criteria}' have been added."
   end
 
   def queue_commands(input)
     if input.length > 11
-      input = input.split(' ')
-      queue_command = input[0..-2].join(' ')
-      case queue_command
-      when "queue save to" then save_to(@current_queue, input[-1])
-      when "queue export html" then export_html(@current_queue, input[-1])
-      when "queue print by" then print_by(@current_queue, input[-1])
-      end
+      file_attribute = input.split(' ').pop()
+      queue_command = input.split(' ')[0..-2].join(' ')
+      long_queue_commands(queue_command, file_attribute)
     else
-      case input
-      when "queue clear" then @current_queue = []
-      when "queue print" then printer(@current_queue)
-      when "queue count" then puts @current_queue.length
-      end
+      short_queue_commands(input)
+    end
+  end
+
+  def long_queue_commands(queue_command, file_attribute)
+    case queue_command
+    when "queue save to" then save_to(@current_queue, file_attribute)
+    when "queue export html" then export_html(@current_queue, file_attribute)
+    when "queue print by" then print_by(@current_queue, file_attribute)
+    end
+  end
+
+  def short_queue_commands(input)
+    case input
+    when "queue clear" then @current_queue = []
+    when "queue print" then printer(@current_queue)
+    when "queue count" then puts @current_queue.length
     end
   end
 

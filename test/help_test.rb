@@ -43,6 +43,10 @@ class HelpTest < Minitest::Test
     assert_nil nil, help_commands("help queue export html")
   end
 
+  def test_invalid_command
+    assert_nil nil, invalid_command
+  end
+
 
 
 end

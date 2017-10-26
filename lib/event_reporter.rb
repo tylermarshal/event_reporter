@@ -19,11 +19,9 @@ class EventReporter
   end
 
   def repl
-    puts "Please enter a command. Type 'help' for a list of commands."
     input = ""
     until input == 'quit'
-      input = gets.to_s.strip
-      divided_input = input.split(' ')
+      divided_input = gets.to_s.strip.split(' ')
       command_router(divided_input)
     end
   end
@@ -34,7 +32,7 @@ class EventReporter
     when "help" then help_commands(divided_input.join(' '))
     when "queue" then queue_commands(divided_input.join(' '))
     when "find" then find_commands(divided_input[1], divided_input[2..-1].join(' '))
-    else puts "That is not a valid command."
+    else invalid_command
     end
   end
 
@@ -49,12 +47,16 @@ class EventReporter
 
   def queue_commands(input)
     if input.length > 11
-      file_attribute = input.split(' ').pop()
-      queue_command = input.split(' ')[0..-2].join(' ')
-      long_queue_commands(queue_command, file_attribute)
+      longer_than_11(input)
     else
       short_queue_commands(input)
     end
+  end
+
+  def longer_than_11(input)
+    file_attribute = input.split(' ').pop()
+    queue_command = input.split(' ')[0..-2].join(' ')
+    long_queue_commands(queue_command, file_attribute)
   end
 
   def long_queue_commands(queue_command, file_attribute)

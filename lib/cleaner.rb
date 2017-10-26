@@ -2,8 +2,6 @@ require 'csv'
 
 module Cleaner
 
-    attr_reader :full_list, :queue
-
   def load_command(filename = nil)
     filename = './full_event_attendees.csv' if filename.nil?
     load_file = CSV.open filename, headers: true, header_converters: :symbol

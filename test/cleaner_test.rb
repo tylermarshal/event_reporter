@@ -19,6 +19,43 @@ class CleanerTest < Minitest::Test
     assert_equal clean_file_row_3, full_list[1]
   end
 
+  def test_load_and_clean_file
+    load_file = CSV.open './full_event_attendees.csv', headers: true, header_converters: :symbol
+    clean_file_row_3 = {:regdate => "11/12/08 13:23",
+                        :first_name => "Sarah",
+                        :last_name => "Hankins",
+                        :email_address => "pinalevitsky@jumpstartlab.com",
+                        :homephone => "4145205000",
+                        :street => "2022 15th Street NW",
+                        :city => "Washington",
+                        :state => "DC",
+                        :zipcode => "20009"}
+    assert_equal clean_file_row_3, load_and_clean_file(load_file)[1]
+  end
+
+  def test_clean_file
+    dirty_file_row_3 = {:regdate => "11/12/08 13:23",
+                        :first_name => "SArah",
+                        :last_name => "Hankins ",
+                        :email_address => "pinalevitsky@jumpstartlab.com",
+                        :homephone => "414-520-5000",
+                        :street => "2022 15th Street NW",
+                        :city => "washington",
+                        :state => "dc",
+                        :zipcode => "20009  "}
+    clean_file_row_3 = {:regdate => "11/12/08 13:23",
+                        :first_name => "Sarah",
+                        :last_name => "Hankins",
+                        :email_address => "pinalevitsky@jumpstartlab.com",
+                        :homephone => "4145205000",
+                        :street => "2022 15th Street NW",
+                        :city => "Washington",
+                        :state => "DC",
+                        :zipcode => "20009"}
+
+    assert_equal clean_file_row_3, clean_file(dirty_file_row_3)
+  end
+
   def test_it_cleans_first_name
     assert_equal "Suzie Joe", clean_first_name("Suzie joe")
     assert_equal "Joe", clean_first_name("joe")

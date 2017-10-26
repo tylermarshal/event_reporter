@@ -1,4 +1,5 @@
 require_relative 'test_helper'
+require 'csv'
 
 class QueueTest < Minitest::Test
 
@@ -55,8 +56,4 @@ class QueueTest < Minitest::Test
                   :homephone=>"9522405682", :street=>"1042 Logan St", :city=>"Denver", :state=>"CO",
                   :zipcode=>"80203"}], save_to(queue, "test_list.csv")
   end
-
-
-
-
 end

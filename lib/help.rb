@@ -20,6 +20,7 @@ module Help
     when "help queue print by" then puts HELP["queue print by"]
     when "help queue save to" then puts HELP["queue save to"]
     when "help queue export html" then puts HELP["queue export html"]
+    else invalid_command
     end
   end
 
@@ -27,6 +28,10 @@ module Help
     puts "\nBelow is a list of commands."
     puts "Enter 'help <command>' for additional information."
     HELP.keys.each {|key| puts "#{key}"}
+  end
+
+  def invalid_command
+    puts "That is not a valid command."
   end
 
 end

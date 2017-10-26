@@ -11,7 +11,7 @@ module Cleaner
 
   def load_and_clean_file(load_file)
     clean_file = load_file.map do |row|
-      clean_file(row)
+      Attendee.new(clean_file(row))
     end
     clean_file
   end

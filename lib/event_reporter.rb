@@ -37,10 +37,9 @@ class EventReporter
   end
 
   def find_commands(attribute, criteria)
-    symbol_attribute = attribute.to_sym
-    cleaned_criteria = clean_criteria(symbol_attribute, criteria)
+    cleaned_criteria = clean_criteria(attribute.to_sym, criteria)
     @current_queue = @clean_list.find_all do |row|
-      row[symbol_attribute] == cleaned_criteria
+      row.attribute == cleaned_criteria
     end
     puts "All listings with a #{attribute} of '#{criteria}' have been added."
   end
